@@ -8,7 +8,7 @@ const spin = keyframes`
 `;
 
 
-export default function BoxMsj({text,direction,bgColor}) {
+export default function BoxMsj({text,direction,bgColor,time}) {
   const spinAnimation = `${spin} infinite 2s linear`;   
   const [sending,setSending] = useState(true);
 
@@ -16,6 +16,10 @@ export default function BoxMsj({text,direction,bgColor}) {
       setTimeout(()=>{
           setSending(false)
       },5000)
+      if(direction == true){
+        direction = "flex-end";
+      }
+      else direction = "flex-start";
   },[])
 
   return (
@@ -25,7 +29,7 @@ export default function BoxMsj({text,direction,bgColor}) {
     {text}
     <Stack display='flex' alignItems='flex-end' >
         <Box as='span' fontSize='sm' color='gray.600'>
-            22:00 
+            {time}
             {
                 sending ? 
                     <SpinnerIcon marginBottom='1' marginLeft='1' animation={spinAnimation} />
